@@ -1,0 +1,11 @@
+h1{
+  /* font-size: 45px; */
+  background-color: cadetblue;
+  color: white;
+  margin-bottom: 10px;
+}
+p{
+  font-size: 35px;
+  padding: 10px;
+  text-align: center;
+}
