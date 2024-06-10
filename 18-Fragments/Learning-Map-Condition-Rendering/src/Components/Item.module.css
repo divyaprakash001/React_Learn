@@ -6,3 +6,8 @@
 .dp-span {
   font-weight: bold;
 }
+
+.button{
+  margin-left: 10px;
+  float: right;
+}
