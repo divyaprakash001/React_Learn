@@ -17,7 +17,7 @@ function App() {
 
   // let [textToShow, setTextState] = useState();
   // let [foodItems, setFoodItems] = useState(['Dal', 'Salad', 'Green vegs']);
-  let [foodItems, setFoodItems] = useState([]);
+  let [foodItems, setFoodItems] = useState(['Dal', 'Salad', 'Green vegs']);
 
 
 
