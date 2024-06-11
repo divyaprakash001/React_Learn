@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import './App.css'
 import Container from './Components/Container';
 import ErrorMessage from './Components/ErrorMessage'
@@ -7,32 +8,44 @@ import FoodTitle from './Components/FoodTitle'
 
 function App() {
 
-  let foodItems = ['Dal', 'Salad', 'Green vegs', 'Roti', 'Ghee', 'Chana'];
+  // let foodItems = ['Dal', 'Salad', 'Green vegs', 'Roti', 'Ghee', 'Chana'];
   // let foodItems = []
 
-  let textToShow = "Food Items entered by user."
+  // let textStateArr = useState("Food Items entered by user.");  // useState returns an array with two value
+  // let textToShow = textStateArr[0];
+  // let setTextState = textStateArr[1];
 
-  const handleInput = (event) => {
-    console.log(event.target.value);
-    textToShow = event.target.value;
+  // let [textToShow, setTextState] = useState();
+  // let [foodItems, setFoodItems] = useState(['Dal', 'Salad', 'Green vegs']);
+  let [foodItems, setFoodItems] = useState([]);
+
+
+
+  const handleKeyDown = (event) => {
+    // console.dir(event)
+    if (event.key == "Enter") {
+      let newFoodItem = event.target.value;
+      let newItems = [...foodItems, newFoodItem]
+      setFoodItems(newItems)
+      console.log(newFoodItem);
+      // setTextState(newFoodItem);
+    }
+
+
+    // console.log(textToShow.length);
   }
+
+
 
   return (
     <>
-      {/* <div className="container"> */}
       <Container >
         <FoodTitle />
+        <FoodInput handleKeyDown={handleKeyDown} />
         <ErrorMessage items={foodItems} />
-        <FoodInput handleInput={handleInput} />
-        <p>{textToShow}</p>
+        {/* <p>{textToShow}</p> */}
         <FoodItems items={foodItems} />
       </Container>
-      {/* </div> */}
-      {/* <Container >
-        <p >The above list is neccessary for your health.</p>
-      </Container> */}
-
-
     </>
   )
 }
