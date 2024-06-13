@@ -1,10 +1,10 @@
 import TodoItem from "./TodoItem";
 
-function TodoItems({ todoItems }) {
+function TodoItems({ todoItems, handleDeleteButton }) {
   return (
     <>
       {todoItems.map(item => (
-        <TodoItem key={item["name"]} todoDate={item["dueDate"]} todoName={item["name"]} />
+        <TodoItem key={item["name"]} todoDate={item["dueDate"]} todoName={item["name"]} handleDeleteButton={handleDeleteButton} />
       ))}
     </>
   )
