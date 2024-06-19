@@ -1,41 +1,49 @@
-import { useState } from "react";
+import { useRef } from "react";
 import styles from "./AddTodo.module.css";
+import { MdAdd } from "react-icons/md";
+
 function AddTodo({ handleNewItem }) {
+  const todoNameElement = useRef();
+  const dueDateElement = useRef();
 
-  const [todoName, setTodoName] = useState("");
-  const [dueDate, setDueDate] = useState("");
-
-  const handleTodoName = (event) => {
-    setTodoName(event.target.value);
-  }
-
-  const handleDueDate = (event) => {
-    setDueDate(event.target.value);
-  }
-
-  const handleAddButton = () => {
+  const handleAddButton = (event) => {
+    event.preventDefault();
+    const todoName = todoNameElement.current.value;
+    const dueDate = dueDateElement.current.value;
+    // console.log(`todoname :: ${todoName} and due date :: ${dueDate}`);
     handleNewItem(todoName, dueDate);
-    setTodoName("");
-    setDueDate("");
-  }
+    todoNameElement.current.value = "";
+    dueDateElement.current.value = "";
+  };
 
   return (
     <>
       <div className="container mb-3">
-        <div className="row dp-row">
+        <form className="row dp-row" onSubmit={handleAddButton}>
           <div className="col-6">
-            <input className={`${styles["todoInput"]}`} type="text" value={todoName} placeholder="Enter Your Task" onChange={handleTodoName} />
+            <input
+              ref={todoNameElement}
+              className={`${styles["todoInput"]}`}
+              type="text"
+              placeholder="Enter Your Task"
+            />
           </div>
           <div className="col-4">
-            <input className={`${styles["todoInput"]}`} type="date" value={dueDate} onChange={handleDueDate} />
+            <input
+              ref={dueDateElement}
+              className={`${styles["todoInput"]}`}
+              type="date"
+            />
           </div>
           <div className="col-2">
-            <button className="btn btn-success dp-button" type="button" onClick={handleAddButton}>Add</button>
+            <button className="btn btn-success dp-button" type="submit">
+              <MdAdd />
+            </button>
           </div>
-        </div>
+        </form>
       </div>
     </>
-  )
+  );
 }
 
 export default AddTodo;
